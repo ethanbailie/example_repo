@@ -1,6 +1,6 @@
 import requests
 from datetime import datetime, timedelta, timezone
-from langchain_cohere import CohereEmbeddings
+from langchain_openai import OpenAIEmbeddings
 from pinecone import Pinecone, ServerlessSpec
 import os
 
@@ -8,8 +8,8 @@ class Embedder():
     '''
     embeds pr data from github and upserts to pinecone
     '''
-    def __init__(self, model='embed-english-v3.0'):
-        self.embeddings = CohereEmbeddings(model=model)
+    def __init__(self, model='text-embedding-3-large'):
+        self.embeddings = OpenAIEmbeddings(model=model)
         self.pc = Pinecone(api_key=os.getenv('PINECONE_API_KEY'))
         self.github_token = os.getenv('GITHUB_TOKEN')
 
@@ -145,8 +145,8 @@ class Retriever():
     '''
     class for retrieving diffs and pinecone data
     '''
-    def __init__(self, embedding_model='embed-english-v3.0', reranker_model='rerank-english-v3.0'):
-        self.embeddings = CohereEmbeddings(model=embedding_model)
+    def __init__(self, embedding_model='text-embedding-3-large'):
+        self.embeddings = OpenAIEmbeddings(model=embedding_model)
         self.pc = Pinecone(api_key=os.getenv('PINECONE_API_KEY'))
         self.github_token = os.getenv('GITHUB_TOKEN')
 
