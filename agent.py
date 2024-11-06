@@ -13,8 +13,8 @@ import uuid
 load_dotenv()
 
 index_name = "rootly"
-model = ChatCohere(model='command-r-plus')
-search_tool = TavilySearchResults(max_results=4) 
+model = ChatCohere(model='command-r')
+search_tool = TavilySearchResults(max_results=2) 
 
 stack = ExitStack()
 memory = stack.enter_context(SqliteSaver.from_conn_string(":memory:"))
