@@ -1,6 +1,6 @@
 import requests
 from datetime import datetime, timedelta, timezone
-from langchain_cohere import CohereEmbeddings
+from langchain_openai import OpenAIEmbeddings
 from pinecone import Pinecone, ServerlessSpec
 import os
 
